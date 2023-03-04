@@ -40,12 +40,12 @@ export class TripService {
       start,
       finish,
       distance: distanceKm,
-      pricePerKm: pricePerKm,
-      tripPrice: tripPrice,
+      pricePerKm,
+      tripPrice,
     });
 
     if (!trip) {
-      throw new NotFoundException('Trip dosent exist');
+      throw new NotFoundException(`Trip doesn't exist`);
     }
 
     await this.tripRepository.save(trip);

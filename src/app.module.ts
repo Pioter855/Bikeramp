@@ -5,7 +5,6 @@ import { typeOrmConfig } from './config/database.config';
 import { TripModule } from './trip/trip.module';
 import { GoogleMapsModule } from './google-maps/google-maps.module';
 import { StatisticModule } from './statistic/statistic.module';
-import { StatisticController } from './statistic/statistic.controller';
 @Module({
   imports: [
     ConfigModule.forRoot({

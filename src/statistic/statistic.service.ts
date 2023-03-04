@@ -8,17 +8,20 @@ import { WeekStatisticInterface } from './interface/week-statistic.interface';
 export class StatisticService {
   constructor(private readonly tripService: TripService) {}
 
-  async weekStatistic() : Promise<{}> {
-    const data = await this.tripService.weekStatistic();
-    return data.map((oneWeekStat: WeekStatisticInterface) => {
-      return {
-        totalDistance: `${oneWeekStat.totalDistance} KM`,
-        totalPrice: `${oneWeekStat.totalPrice} PLN`,
-      };
-    });
+  async weekStatistic()  {
+    const [data] = await this.tripService.weekStatistic();
+    return {
+      totalDistance:`${data.totalDistance} KM`,
+      totalPrice: `${data.totalPrice} PLN`
+    }
   }
 
-  async monthStatistic(): Promise<{}> {
+  async monthStatistic() : Promise<{
+    day:string,
+    totalDistance: string
+    avgRide: string,
+    avgPrice:string,
+  }[]> {
     const data = await this.tripService.monthStatistic();
     return data.map((oneDayStat: MonthStatisticInterface) => {
       return {
