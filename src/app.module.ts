@@ -1,10 +1,22 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { typeOrmConfig } from './config/database.config';
+import { TripModule } from './trip/trip.module';
+import { GoogleMapsModule } from './google-maps/google-maps.module';
+import { StatisticModule } from './statistic/statistic.module';
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRoot(typeOrmConfig),
+    TripModule,
+    GoogleMapsModule,
+    StatisticModule,
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
